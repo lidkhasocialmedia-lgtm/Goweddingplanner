@@ -97,7 +97,7 @@
             <p class="text-xs text-stone-500 mb-6">Completa tus datos para descargar el catálogo completo.</p>
 
             <iframe name="catalog_iframe" id="catalog_iframe" style="display:none;"
-                onload="if(catalogSubmitted) {showCatalogLink();}"></iframe>
+                onload="if(catalogSubmitted) { window.open('/Go_Wedding_Planner_Servicios.html', '_blank'); closeCatalogModal(); }"></iframe>
             <form id="catalog-form"
                 action="https://docs.google.com/forms/d/e/1FAIpQLScSHlNWQ8U_wvu4JQd79gLn7zTMy5PFin00MIV_3uiWFfAtIQ/formResponse"
                 method="post" target="catalog_iframe" onsubmit="catalogSubmitted=true;" class="space-y-4 text-left">
@@ -144,8 +144,8 @@
                     <a href="/" class="hover:text-rose-500 transition">Inicio</a>
                     <a href="/servicios" class="text-rose-500 transition">Servicios</a>
                     <a href="/portfolio" class="hover:text-rose-500 transition">Portfolio</a>
-                    <a href="/#nosotros-section" class="hover:text-rose-500 transition">Sobre Nosotros</a>
-                    <a href="/#contacto-section" class="hover:text-rose-500 transition">Contacto</a>
+                    <a href="/sobre-nosotros" class="hover:text-rose-500 transition">Sobre Nosotros</a>
+                    <a href="/contacto" class="hover:text-rose-500 transition">Contacto</a>
 
                     <!-- Dropdown Dónde Trabajamos -->
                     <div class="relative dropdown group">
@@ -188,10 +188,9 @@
                 <a href="/" class="block py-4 border-b border-stone-50 hover:text-rose-500">Inicio</a>
                 <a href="/servicios" class="block py-4 border-b border-stone-50 hover:text-rose-500">Servicios</a>
                 <a href="/portfolio" class="block py-4 border-b border-stone-50 hover:text-rose-500">Portfolio</a>
-                <a href="/#nosotros-section" onclick="toggleMenu()"
-                    class="block py-4 border-b border-stone-50 hover:text-rose-500">Sobre Nosotros</a>
-                <a href="/#contacto-section" onclick="toggleMenu()"
-                    class="block py-4 border-b border-stone-50 hover:text-rose-500">Contacto</a>
+                <a href="/sobre-nosotros" class="block py-4 border-b border-stone-50 hover:text-rose-500">Sobre
+                    Nosotros</a>
+                <a href="/contacto" class="block py-4 border-b border-stone-50 hover:text-rose-500">Contacto</a>
 
                 <!-- Mobile Locations Collapsible -->
                 <details class="group border-b border-stone-50">
@@ -216,10 +215,15 @@
     </nav>
 
     <!-- HEADER -->
-    <section class="pt-32 pb-16 bg-stone-900 text-white text-center px-6">
-        <h1 class="text-4xl md:text-6xl italic mb-4">Experiencias Inolvidables</h1>
-        <p class="text-stone-400 max-w-2xl mx-auto">No tendréis que preocuparos de nada, será vuestro día inolvidable.
-        </p>
+    <section
+        class="pt-32 pb-16 bg-stone-900 text-white text-center px-6 bg-[url('https://i.ibb.co/XksQvjMC/IMG-3859.jpg')] bg-cover bg-center bg-no-repeat relative">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10">
+            <h1 class="text-4xl md:text-6xl italic mb-4">Experiencias Inolvidables</h1>
+            <p class="text-stone-200 max-w-2xl mx-auto">No tendréis que preocuparos de nada, será vuestro día
+                inolvidable.
+            </p>
+        </div>
     </section>
 
     <!-- PAIN POINTS -->
@@ -263,10 +267,9 @@
                     <li><i class="fas fa-check text-rose-500 mr-2"></i> Buscáis resultados profesionales</li>
                 </ul>
                 <div class="flex flex-col sm:flex-row gap-4 items-center">
-                    <span class="text-xl font-serif italic text-stone-900">Desde 1.500€</span>
                     <button onclick="openCatalogModal()"
                         class="bg-stone-900 text-white px-6 py-3 text-[10px] uppercase tracking-widest hover:bg-rose-500 transition w-full sm:w-auto">Ver
-                        Catálogo 2026 en PDF</button>
+                        Catálogo 2026</button>
                 </div>
             </div>
 
@@ -278,10 +281,9 @@
                 <p class="text-stone-500 leading-relaxed mb-6">¿Tenéis claro el venue pero necesitáis ayuda estética?
                     Transformamos vuestras ideas en un concepto visual único.</p>
                 <div class="flex flex-col sm:flex-row gap-4 items-center">
-                    <span class="text-xl font-serif italic text-stone-900">Desde 800€</span>
                     <button onclick="openCatalogModal()"
                         class="bg-stone-900 text-white px-6 py-3 text-[10px] uppercase tracking-widest hover:bg-rose-500 transition w-full sm:w-auto">Ver
-                        Catálogo 2026 en PDF</button>
+                        Catálogo 2026</button>
                 </div>
             </div>
 
@@ -293,10 +295,9 @@
                 <p class="text-stone-500 leading-relaxed mb-6">Garantizamos que todo fluya perfectamente mientras
                     vosotros solo os preocupáis de disfrutar.</p>
                 <div class="flex flex-col sm:flex-row gap-4 items-center">
-                    <span class="text-xl font-serif italic text-stone-900">Desde 350€</span>
                     <button onclick="openCatalogModal()"
                         class="bg-stone-900 text-white px-6 py-3 text-[10px] uppercase tracking-widest hover:bg-rose-500 transition w-full sm:w-auto">Ver
-                        Catálogo 2026 en PDF</button>
+                        Catálogo 2026</button>
                 </div>
             </div>
 
@@ -308,10 +309,9 @@
                 <p class="text-stone-500 leading-relaxed mb-6">Gestionamos proveedores locales, logística y detalles
                     legales.</p>
                 <div class="flex flex-col sm:flex-row gap-4 items-center">
-                    <span class="text-xl font-serif italic text-stone-900">Desde 2.500€</span>
                     <button onclick="openCatalogModal()"
                         class="bg-stone-900 text-white px-6 py-3 text-[10px] uppercase tracking-widest hover:bg-rose-500 transition w-full sm:w-auto">Ver
-                        Catálogo 2026 en PDF</button>
+                        Catálogo 2026</button>
                 </div>
             </div>
 
@@ -323,10 +323,9 @@
                 <p class="text-stone-500 leading-relaxed mb-6">Guía en decisiones de imagen, vestido, dress code y
                     estilismo.</p>
                 <div class="flex flex-col sm:flex-row gap-4 items-center">
-                    <span class="text-xl font-serif italic text-stone-900">Desde 350€</span>
                     <button onclick="openCatalogModal()"
                         class="bg-stone-900 text-white px-6 py-3 text-[10px] uppercase tracking-widest hover:bg-rose-500 transition w-full sm:w-auto">Ver
-                        Catálogo 2026 en PDF</button>
+                        Catálogo 2026</button>
                 </div>
             </div>
 
