@@ -1,0 +1,769 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="IQInHS7MRj_zGZYew4uULtxRZWiVzZy4cvD3Utiu57g" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wedding Planner en Alcorcón | Organización de Bodas en Madrid Sur</title>
+
+    <link rel="icon" type="image/png" href="https://i.ibb.co/XfLJghyC/Go.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/XfLJghyC/Go.png">
+    <meta name="msapplication-TileImage" content="https://i.ibb.co/XfLJghyC/Go.png">
+
+    <meta property="og:site_name" content="Alcorcón Weddings">
+    <meta property="og:title" content="Alcorcón Weddings | Wedding Planner">
+    <meta property="og:url" content="https://goweddingplanner.com/bodas-alcorcon">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Especialistas en organización de bodas en Alcorcón y Madrid Sur.">
+
+    <meta name="description"
+        content="Especialistas en organización de bodas en Alcorcón y Madrid Sur. Diseño creativo, coordinación integral y gestión de proveedores. ¡Tu boda perfecta sin estrés!">
+    <meta name="keywords" content="wedding planner alcorcon, organización bodas alcorcon, fincas alcorcon">
+    <link rel="canonical" href="https://goweddingplanner.com/bodas-alcorcon" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #success-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            filter: brightness(0.9);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-container:hover .gallery-item:hover {
+            filter: brightness(1);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-stone-50 text-stone-900">
+
+    <div id="success-modal">
+        <div class="bg-white p-10 max-w-lg w-full text-center shadow-2xl border-t-4 border-rose-500">
+            <h3 class="text-3xl mb-4 italic text-stone-800">¡Solicitud enviada!</h3>
+            <p class="text-stone-600 mb-8 font-light">La planificación de tu boda está en camino, en breve nos pondremos
+                en contacto con vosotros.</p>
+            <button onclick="closeSuccessModal()"
+                class="bg-stone-900 text-white px-8 py-3 uppercase text-[10px] tracking-widest font-bold hover:bg-rose-500 transition cursor-pointer">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- CATALOG MODAL -->
+    <div id="catalog-modal" style="display: none;"
+        class="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
+        <div
+            class="bg-white p-6 md:p-10 max-w-lg w-full text-center shadow-2xl border-t-4 border-rose-500 rounded-sm relative">
+            <button onclick="closeCatalogModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-900"><i
+                    class="fas fa-times"></i></button>
+            <h3 class="text-2xl mb-2 italic text-stone-800">Catálogo 2026</h3>
+            <p class="text-xs text-stone-500 mb-6">Completa tus datos para descargar el catálogo completo.</p>
+
+            <iframe name="catalog_iframe" id="catalog_iframe" style="display:none;"
+                onload="if(catalogSubmitted) { showCatalogLink(); }"></iframe>
+            <form id="catalog-form"
+                action="https://docs.google.com/forms/d/e/1FAIpQLScSHlNWQ8U_wvu4JQd79gLn7zTMy5PFin00MIV_3uiWFfAtIQ/formResponse"
+                method="post" target="catalog_iframe" onsubmit="catalogSubmitted=true;" class="space-y-4 text-left">
+                <input type="email" name="entry.1480460378" placeholder="TU EMAIL" required
+                    class="w-full border-b border-stone-300 py-3 text-xs uppercase tracking-widest outline-none focus:border-rose-500 transition">
+
+                <div class="flex items-start gap-3 pt-2">
+                    <input type="checkbox" id="catalog-privacy" required class="mt-1 accent-rose-500 shrink-0">
+                    <label for="catalog-privacy"
+                        class="text-[9px] text-stone-500 uppercase tracking-tighter leading-tight">
+                        Acepto el envío de ofertas y servicios.
+                    </label>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-rose-500 text-white py-3 font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-stone-800 transition">
+                    Ver Catálogo
+                </button>
+            </form>
+
+            <div id="catalog-success" style="display: none;" class="mt-6 flex flex-col items-center animate-pulse">
+                <a href="Go_Wedding_planner_catalogo.pdf" target="_blank" class="text-6xl text-red-600 mb-2"><i
+                        class="fas fa-file-pdf"></i></a>
+                <a href="Go_Wedding_planner_catalogo.pdf" target="_blank"
+                    class="text-sm font-bold uppercase tracking-widest border-b border-stone-900">Descargar
+                    Catálogo 2026</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENU -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="https://i.ibb.co/XfLJghyC/Go.png" alt="Logo" class="h-8 md:h-10 w-auto">
+                <div class="text-lg md:text-xl font-bold tracking-widest text-stone-800 uppercase hidden sm:block">GO
+                    WEDDING <span class="text-rose-400">Alcorcón</span></div>
+                <div class="text-sm font-bold tracking-widest text-stone-800 uppercase sm:hidden">GO WEDDING <span
+                        class="text-rose-400">Alcorcón</span></div>
+            </div>
+
+            <div
+                class="hidden md:flex gap-6 items-center text-[10px] font-bold uppercase tracking-widest text-stone-600">
+                <a href="#servicios-section" class="hover:text-rose-500 transition cursor-pointer">Servicios</a>
+                <a href="#nosotros-section" class="hover:text-rose-500 transition cursor-pointer">Sobre Nosotros</a>
+                <a href="#contacto-section" class="hover:text-rose-500 transition cursor-pointer">Contacto</a>
+                <a href="#galeria-section" class="hover:text-rose-500 transition cursor-pointer">Galería</a>
+                <a href="https://goweddingplanner.com/"
+                    class="bg-rose-500 text-white px-4 py-2 rounded-sm hover:bg-stone-800 transition">IR A PAGINA
+                    PRINCIPAL</a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button class="md:hidden text-2xl text-stone-800"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i
+                    class="fas fa-bars"></i></button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-t border-stone-200 p-4 flex flex-col gap-4 text-center text-xs uppercase font-bold tracking-widest">
+            <a href="#servicios-section" class="hover:text-rose-500">Servicios</a>
+            <a href="#nosotros-section" class="hover:text-rose-500">Sobre Nosotros</a>
+            <a href="#contacto-section" class="hover:text-rose-500">Contacto</a>
+            <a href="#galeria-section" class="hover:text-rose-500">Galería</a>
+            <a href="https://goweddingplanner.com/" class="text-rose-500">IR A PAGINA PRINCIPAL</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero-bg h-screen flex items-center justify-center text-center text-white px-4">
+        <div class="max-w-4xl">
+            <span class="uppercase tracking-[0.5em] text-sm mb-4 block">Especialistas en Madrid Sur</span>
+            <h1 class="text-5xl md:text-8xl mb-8 font-light italic">Vuestra Boda en Alcorcón, Sin Límites</h1>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="scrollToSection('contacto-section')"
+                    class="bg-rose-500 text-white px-10 py-4 uppercase text-[10px] tracking-widest font-bold hover:bg-white hover:text-rose-500 transition duration-300 cursor-pointer shadow-lg">
+                    Pedir Presupuesto
+                </button>
+                <button onclick="scrollToSection('servicios-section')"
+                    class="border border-white px-10 py-4 uppercase text-[10px] tracking-widest font-bold hover:bg-white hover:text-stone-900 transition duration-300 cursor-pointer">
+                    Ver Servicios
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO TEXT -->
+    <section class="py-20 bg-white px-6 border-b border-stone-100">
+        <div class="max-w-3xl mx-auto text-center">
+
+            <h2 class="text-3xl md:text-5xl mb-6 italic text-stone-800">Wedding Planner en Alcorcón: Tu Día Perfecto
+            </h2>
+            <p class="text-stone-500 leading-relaxed font-light mb-4">
+                Alcorcón se ha convertido en uno de los destinos preferidos para parejas que buscan una boda con
+                carácter en el sur de Madrid.
+                Como especialistas locales, conocemos cada rincón, desde las fincas más exclusivas hasta los espacios
+                urbanos más vanguardistas
+                que ofrece nuestra ciudad.
+            </p>
+            <p class="text-stone-500 leading-relaxed font-light">
+                Nuestro equipo de <strong>wedding planners en Alcorcón</strong> se encarga de transformar vuestras ideas
+                en una celebración
+                inolvidable. Gestionamos la logística, la decoración y los proveedores locales con una precisión
+                milimétrica, permitiéndoos
+                disfrutar del proceso sin el estrés habitual de la organización.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios-section" class="py-20 md:py-32 px-6 max-w-7xl mx-auto bg-stone-900 text-white">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <span class="text-rose-400 uppercase tracking-widest text-xs font-bold mb-4 block">Nuestra
+                    Experiencia</span>
+                <h2 class="text-4xl md:text-6xl mb-12">Servicios A Medida</h2>
+
+                <div class="space-y-12">
+                    <!-- Service 1 -->
+                    <div class="flex gap-6">
+                        <div class="text-rose-400 text-2xl font-serif italic">01.</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 italic tracking-wider capitalize">Planificación Integral
+                            </h4>
+                            <p class="text-sm text-stone-400 leading-relaxed">El servicio llave en mano. Nosotros nos
+                                encargamos de TODO. Desde la primera idea hasta el último baile. Este servicio es
+                                perfecto si queréis despreocuparos completamente.</p>
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="flex gap-6">
+                        <div class="text-rose-400 text-2xl font-serif italic">02.</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 italic tracking-wider capitalize">Styling & Diseño</h4>
+                            <p class="text-sm text-stone-400 leading-relaxed">Creamos la identidad visual de vuestra
+                                boda. ¿Tenéis claro el venue pero necesitáis ayuda estética? Transformamos vuestras
+                                ideas en un concepto visual único.</p>
+                        </div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="flex gap-6">
+                        <div class="text-rose-400 text-2xl font-serif italic">03.</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 italic tracking-wider capitalize">Coordinación "Día B"
+                            </h4>
+                            <p class="text-sm text-stone-400 leading-relaxed">Para que seáis invitados en vuestra propia
+                                boda. Garantizamos que todo fluya perfectamente mientras vosotros solo os preocupáis de
+                                disfrutar.</p>
+                        </div>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="flex gap-6">
+                        <div class="text-rose-400 text-2xl font-serif italic">04.</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 italic tracking-wider capitalize">Destination Weddings
+                            </h4>
+                            <p class="text-sm text-stone-400 leading-relaxed">¿Soñáis con casaros en otra ciudad o país?
+                                Gestionamos proveedores locales, logística y detalles legales.</p>
+                        </div>
+                    </div>
+                    <!-- Service 5 -->
+                    <div class="flex gap-6">
+                        <div class="text-rose-400 text-2xl font-serif italic">05.</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 italic tracking-wider capitalize">Asesoramiento de Imagen
+                            </h4>
+                            <p class="text-sm text-stone-400 leading-relaxed">Para que brilléis en vuestro gran día.
+                                Guía en decisiones de imagen, vestido, dress code y estilismo.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-8">
+                        <button onclick="openCatalogModal()"
+                            class="bg-white text-stone-900 border border-white px-10 py-4 uppercase text-[10px] tracking-widest font-bold hover:bg-rose-500 hover:text-white transition duration-300 cursor-pointer shadow-lg w-full md:w-auto">
+                            VER CATALOGO 2026
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 space-y-4">
+                <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=687&auto=format&fit=crop"
+                    class="w-full h-[600px] object-cover rounded-sm shadow-2xl grayscale hover:grayscale-0 transition duration-700"
+                    alt="Wedding Planner Alcorcón">
+            </div>
+        </div>
+    </section>
+
+    <!-- PINK QUOTE SECTION -->
+    <section class="py-16 bg-rose-500 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-white text-2xl md:text-5xl italic font-light font-serif">"No tendréis que preocuparos de
+                nada, será el día perfecto."</p>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="py-20 bg-stone-100 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-4 shadow-md text-center text-stone-800 group">
+                <div class="overflow-hidden mb-4"><img
+                        src="https://plus.unsplash.com/premium_photo-1700581724138-9d7cea98d613?q=80&w=687&auto=format&fit=crop"
+                        class="h-64 w-full object-cover group-hover:scale-105 transition duration-500"
+                        alt="Boda Aire Libre"></div>
+                <h3 class="text-2xl mb-2 italic">Entornos Naturales</h3>
+                <p class="text-[10px] text-stone-400 uppercase tracking-widest font-bold">parques y fincas</p>
+            </div>
+            <div class="bg-white p-4 shadow-md text-center border-t-4 border-rose-400 text-stone-800 group">
+                <div class="overflow-hidden mb-4"><img
+                        src="https://images.unsplash.com/photo-1742569227530-b20616631f82?q=80&w=687&auto=format&fit=crop"
+                        class="h-64 w-full object-cover group-hover:scale-105 transition duration-500" alt="Salón Lujo">
+                </div>
+                <h3 class="text-2xl mb-2 italic">Salones Modernos</h3>
+                <p class="text-[10px] text-stone-400 uppercase tracking-widest font-bold">Vanguardia y Estilo Urbano</p>
+            </div>
+            <div class="bg-white p-4 shadow-md text-center text-stone-800 group">
+                <div class="overflow-hidden mb-4"><img
+                        src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1000"
+                        class="h-64 w-full object-cover group-hover:scale-105 transition duration-500"
+                        alt="Ceremonia Civil"></div>
+                <h3 class="text-2xl mb-2 italic">Bodas Civiles</h3>
+                <p class="text-[10px] text-stone-400 uppercase tracking-widest font-bold">personalidad única</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PROCESO -->
+    <section class="py-16 md:py-20 bg-stone-50 px-4 md:px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-5xl text-center mb-6 italic text-stone-800">Cómo Trabajamos</h2>
+            <p class="text-center text-stone-500 mb-12 md:mb-16 text-sm md:text-base">De la Primera Idea al Último
+                Baile. Nuestro proceso probado.</p>
+
+            <div class="space-y-12 relative border-l-2 border-rose-200 ml-2 md:ml-4 pl-6 md:pl-10">
+                <!-- Paso 1 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[31px] md:-left-[49px] top-1 w-4 h-4 bg-rose-500 rounded-full border-2 border-white">
+                    </div>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-widest text-rose-500 font-bold block mb-1">Paso
+                        1 (Gratuito)</span>
+                    <h4 class="text-xl md:text-2xl italic text-stone-800 mb-2">Primera Consulta</h4>
+                    <p class="text-xs md:text-sm text-stone-600 mb-2">Videollamada o café de 45 min para conocernos.</p>
+                </div>
+                <!-- Paso 2 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[31px] md:-left-[49px] top-1 w-4 h-4 bg-rose-300 rounded-full border-2 border-white">
+                    </div>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-widest text-rose-400 font-bold block mb-1">Paso
+                        2</span>
+                    <h4 class="text-xl md:text-2xl italic text-stone-800 mb-2">Propuesta Personalizada</h4>
+                    <p class="text-xs md:text-sm text-stone-600">Presupuesto detallado, timeline y contrato.</p>
+                </div>
+                <!-- Paso 3 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[31px] md:-left-[49px] top-1 w-4 h-4 bg-stone-300 rounded-full border-2 border-white">
+                    </div>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-widest text-stone-400 font-bold block mb-1">Paso
+                        3 (8-12 Meses antes)</span>
+                    <h4 class="text-xl md:text-2xl italic text-stone-800 mb-2">Planificación</h4>
+                    <p class="text-xs md:text-sm text-stone-600 mb-2">Búsqueda de Venue y proveedores principales.</p>
+                </div>
+                <!-- Paso 4 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[31px] md:-left-[49px] top-1 w-4 h-4 bg-stone-300 rounded-full border-2 border-white">
+                    </div>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-widest text-stone-400 font-bold block mb-1">Paso
+                        4 (3-6 Meses antes)</span>
+                    <h4 class="text-xl md:text-2xl italic text-stone-800 mb-2">Diseño y Detalles</h4>
+                    <p class="text-xs md:text-sm text-stone-600 mb-2">Diseño floral, iluminación y estilismo.</p>
+                </div>
+                <!-- Paso 5 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[31px] md:-left-[49px] top-1 w-4 h-4 bg-stone-300 rounded-full border-2 border-white">
+                    </div>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-widest text-stone-400 font-bold block mb-1">Paso
+                        5 (1 Mes antes)</span>
+                    <h4 class="text-xl md:text-2xl italic text-stone-800 mb-2">Coordinación Final</h4>
+                    <p class="text-xs md:text-sm text-stone-600 mb-2">Revisión minuto a minuto y ensayo.</p>
+                </div>
+                <!-- Paso 6 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[31px] md:-left-[49px] top-1 w-4 h-4 bg-rose-500 rounded-full border-2 border-white shadow-lg shadow-rose-500/50">
+                    </div>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-widest text-rose-500 font-bold block mb-1">Paso
+                        6 ✨</span>
+                    <h4 class="text-xl md:text-2xl italic text-stone-800 mb-2">Día de la Boda</h4>
+                    <p class="text-xs md:text-sm text-stone-600 mb-2">12h de cobertura. Vosotros solo disfrutáis.</p>
+                </div>
+                <!-- Paso 7 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[31px] md:-left-[49px] top-1 w-4 h-4 bg-stone-300 rounded-full border-2 border-white">
+                    </div>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-widest text-stone-400 font-bold block mb-1">Paso
+                        7 (Post-Boda)</span>
+                    <h4 class="text-xl md:text-2xl italic text-stone-800 mb-2">Cierre</h4>
+                    <p class="text-xs md:text-sm text-stone-600">Devoluciones y agradecimientos.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <p class="mb-6 italic text-base md:text-lg">¿Listo para empezar este viaje juntos?</p>
+                <button onclick="scrollToSection('contacto-section')"
+                    class="bg-rose-500 text-white px-8 py-3 uppercase text-[10px] tracking-widest font-bold hover:bg-stone-900 transition shadow-lg w-full sm:w-auto">
+                    Agenda tu Primera Consulta Gratuita
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. NOSOTROS -->
+    <section id="nosotros-section" class="py-16 md:py-20 bg-white px-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div class="relative order-2 md:order-1">
+                <img src="https://i.ibb.co/0pMGXWFp/Image-202602041451.jpg"
+                    class="w-full h-64 md:h-[500px] object-cover rounded-sm shadow-xl grayscale hover:grayscale-0 transition duration-700"
+                    alt="Javier y Andrea Wedding Planners Madrid">
+                <div
+                    class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white p-4 md:p-6 shadow-lg border-l-4 border-rose-500 hidden sm:block">
+                    <p class="font-serif italic text-lg md:text-xl">"Creamos bodas con alma"</p>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <span class="text-rose-500 uppercase tracking-widest text-xs font-bold mb-4 block">Sobre Nosotros</span>
+                <h2 class="text-3xl md:text-4xl italic text-stone-800 mb-6">Javier & Andrea</h2>
+                <p class="text-stone-500 leading-relaxed mb-6 text-sm md:text-base">
+                    Somos el dúo detrás de Go Wedding Planner. Con más de 10 años combinados en gestión de eventos y
+                    diseño de interiores, unimos la precisión logística con la sensibilidad estética.
+                </p>
+                <p class="text-stone-500 leading-relaxed mb-8 text-sm md:text-base">
+                    Creemos que una boda debe ser un reflejo auténtico de la pareja, no una copia de Pinterest. Nos
+                    obsesiona la excelencia y la tranquilidad de nuestros novios.
+                </p>
+                <a href="/sobre-nosotros"
+                    class="border-b-2 border-stone-900 pb-1 text-stone-900 uppercase text-[10px] md:text-xs tracking-widest hover:text-rose-500 hover:border-rose-500 transition">Conócenos
+                    mejor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS (CUSTOM) -->
+    <section class="py-20 bg-stone-900 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-rose-400 text-3xl md:text-5xl text-center mb-16 italic font-light">Lo que dicen nuestras
+                parejas en Alcorcón</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="border-l border-rose-500/30 pl-8 py-4">
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-rose-400">★★★★★</span>
+                    </div>
+                    <p class="text-rose-400/90 text-xl md:text-2xl font-serif italic leading-relaxed mb-6">
+                        "Organizaron nuestra boda en Alcorcón y fue increíble. Controlaron cada detalle y nos quitaron
+                        todo el peso de encima."
+                    </p>
+                    <div class="uppercase tracking-[0.3em] text-[10px] text-rose-500 font-bold">— Laura & David</div>
+                </div>
+                <div class="border-l border-rose-500/30 pl-8 py-4">
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-rose-400">★★★★★</span>
+                    </div>
+                    <p class="text-rose-400/90 text-xl md:text-2xl font-serif italic leading-relaxed mb-6">
+                        "Conocen a los mejores proveedores de la zona. El resultado superó nuestras expectativas."
+                    </p>
+                    <div class="uppercase tracking-[0.3em] text-[10px] text-rose-500 font-bold">— Patricia & Marcos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 text-center">
+            <div>
+                <h5 class="text-3xl font-serif italic text-rose-500 mb-2">+50</h5>
+                <p class="text-[10px] uppercase tracking-widest text-stone-400">Bodas Realizadas</p>
+            </div>
+            <div>
+                <h5 class="text-3xl font-serif italic text-rose-500 mb-2">0%</h5>
+                <p class="text-[10px] uppercase tracking-widest text-stone-400">Estrés para la pareja</p>
+            </div>
+            <div>
+                <h5 class="text-3xl font-serif italic text-rose-500 mb-2">Top</h5>
+                <p class="text-[10px] uppercase tracking-widest text-stone-400">Proveedores Madrid Sur</p>
+            </div>
+            <div>
+                <h5 class="text-3xl font-serif italic text-rose-500 mb-2">24/7</h5>
+                <p class="text-[10px] uppercase tracking-widest text-stone-400">Atención Personalizada</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="py-16 md:py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-5xl text-center mb-12 italic text-stone-800">Preguntas Frecuentes</h2>
+
+            <div class="space-y-4">
+                <!-- Bloque Precios -->
+                <details class="group border border-stone-200 rounded-sm">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-4 md:p-6 bg-stone-50 group-open:bg-rose-50 transition">
+                        <span class="uppercase tracking-widest text-[10px] md:text-xs font-bold pr-4">Sobre Precios y
+                            Pagos</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-stone-600 text-sm p-4 md:p-6 bg-white border-t border-stone-100">
+                        <p class="mb-4"><strong>¿Cuál es el costo?</strong> Nuestros servicios parten desde una base,
+                            pero cada boda es única. Ofrecemos presupuestos a medida tras la primera consulta gratuita.
+                        </p>
+                        <p class="mb-4"><strong>¿Trabajan a comisión?</strong> No. Cobramos por nuestro tiempo y
+                            experiencia. Si conseguimos descuentos con proveedores, ese ahorro es para vosotros.</p>
+                        <p><strong>Proceso de pago:</strong> Trabajamos con un depósito inicial para reservar la fecha y
+                            pagos fraccionados hasta el día de la boda.</p>
+                    </div>
+                </details>
+
+                <!-- Bloque Experiencia -->
+                <details class="group border border-stone-200 rounded-sm">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-4 md:p-6 bg-stone-50 group-open:bg-rose-50 transition">
+                        <span class="uppercase tracking-widest text-[10px] md:text-xs font-bold pr-4">Experiencia y
+                            Proceso</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-stone-600 text-sm p-4 md:p-6 bg-white border-t border-stone-100">
+                        <p class="mb-4"><strong>¿Con cuánta antelación?</strong> Recomendamos contactarnos 12 meses
+                            antes para Planificación Integral. Para Coordinación, mínimo 3 meses.</p>
+                        <p><strong>¿Estás presente el día de la boda?</strong> Sí, siempre hay un coordinador principal
+                            (Javier o Andrea) y asistentes según el número de invitados.</p>
+                    </div>
+                </details>
+
+                <!-- Bloque Geografía -->
+                <details class="group border border-stone-200 rounded-sm">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-4 md:p-6 bg-stone-50 group-open:bg-rose-50 transition">
+                        <span class="uppercase tracking-widest text-[10px] md:text-xs font-bold pr-4">Alcance
+                            Geográfico</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-stone-600 text-sm p-4 md:p-6 bg-white border-t border-stone-100">
+                        <p class="mb-4"><strong>¿Dónde trabajáis?</strong> Nuestra base es Madrid Sur (Alcorcón,
+                            Alcorcón, Arroyomolinos), pero organizamos bodas en toda la Comunidad de Madrid y resto de
+                            España.</p>
+                        <p><strong>¿Coste por desplazamiento?</strong> Incluido en Madrid Comunidad. Fuera de la
+                            comunidad se calculan gastos de viaje y alojamiento.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contacto-section" class="py-20 md:py-32 bg-stone-100 px-6">
+        <div class="max-w-5xl mx-auto text-center mb-16">
+            <h2 class="text-4xl md:text-5xl italic text-stone-800">Contacto</h2>
+        </div>
+        <div
+            class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 bg-stone-900 shadow-2xl rounded-sm overflow-hidden w-full">
+            <div
+                class="p-8 md:p-12 text-white flex flex-col justify-center bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]">
+                <div class="flex justify-start mb-6">
+                    <img src="https://i.ibb.co/XfLJghyC/Go.png" alt="Logo Go Wedding Planner" class="h-12 w-auto">
+                </div>
+                <h3 class="text-2xl md:text-3xl mb-6 italic">Comencemos a diseñar vuestro gran día</h3>
+                <p class="text-stone-400 text-sm italic border-l-2 border-rose-500 pl-4 mb-4">¿Preparados para la boda
+                    de vuestros sueños? Dejad vuestros datos y os enviaremos nuestro dossier de servicios y tarifas.</p>
+                <p class="text-xs uppercase tracking-[0.2em] text-rose-300">Alcorcón, Madrid Sur</p>
+            </div>
+            <div class="p-8 md:p-12 bg-stone-50">
+                <iframe name="hidden_iframe_bodas-alcorcon" id="hidden_iframe_bodas-alcorcon" style="display:none;"
+                    onload="if(submitted) {showSuccess();}"></iframe>
+                <form
+                    action="https://docs.google.com/forms/d/e/1FAIpQLScsPrwNXj-tKiTevmXsE99SOsQ9Sl2KSPgsmq5poYJDT_BbPA/formResponse"
+                    method="post" target="hidden_iframe_bodas-alcorcon" onsubmit="submitted=true;" class="space-y-6">
+                    <input type="text" name="entry.122378260" placeholder="Vuestro nombre" required
+                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                    <input type="email" name="entry.579122200" placeholder="Email" required
+                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                    <input type="tel" name="entry.1881057356" placeholder="Teléfono" required
+                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                    <textarea name="entry.1646105339" placeholder="Contadnos brevemente vuestra idea..." required
+                        rows="3"
+                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none"></textarea>
+
+                    <div class="flex items-start gap-3 pt-2">
+                        <input type="checkbox" id="privacy_bodas-alcorcon" required class="mt-1 accent-rose-500">
+                        <label for="privacy_bodas-alcorcon"
+                            class="text-[9px] text-stone-500 uppercase tracking-tighter leading-tight">
+                            Acepto el tratamiento de datos para recibir una propuesta personalizada de Alcorcón Weddings
+                            y la cesión de datos a proveedores locales.
+                        </label>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-rose-500 text-white py-4 font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-stone-800 transition shadow-xl cursor-pointer">
+                        Enviar Solicitud
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- GALLERY -->
+    <section id="galeria-section" class="py-20 bg-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl text-center mb-16 italic text-stone-800">Galería</h2>
+            <div class="gallery-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden p-2">
+                <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=800"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 1">
+                <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&q=80&w=800"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 2">
+                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=800"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 3">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 4">
+                <img src="https://i.ibb.co/zWw23sKs/unnamed-4.jpg"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 5">
+                <img src="https://i.ibb.co/LdSJ3Sd2/unnamed-3.jpg"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 6">
+                <img src="https://i.ibb.co/Xf6R14WY/unnamed-2.jpg"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 7">
+                <img src="https://i.ibb.co/j9Hr6xJj/unnamed.jpg"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 8">
+                <img src="https://i.ibb.co/xShgXgLL/unnamed-1.jpg"
+                    class="gallery-item w-full h-80 object-cover rounded-sm shadow-md" alt="Boda 9">
+            </div>
+        </div>
+    </section>
+
+    <!-- BACK TO MAIN -->
+    <section class="py-12 bg-rose-500 text-center">
+        <a href="https://goweddingplanner.com/"
+            class="text-white font-bold uppercase tracking-widest text-sm hover:text-stone-900 transition">
+            IR A GOWEDDINGPLANNER.COM
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-center border-t border-stone-800">
+        <div class="text-[10px] uppercase tracking-widest text-stone-400 mb-4">
+            © 2026 Go Wedding Planner. Todos los derechos reservados.
+        </div>
+        <div
+            class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 text-[10px] uppercase tracking-widest text-stone-500 items-center">
+            <a href="/aviso-legal" class="hover:text-white transition">Aviso Legal</a>
+            <a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a>
+            <a href="/politica-cookies" class="hover:text-white transition">Política de Cookies</a>
+        </div>
+    </footer>
+
+    <script>
+        let catalogSubmitted = false;
+        let submitted = false;
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        function openCatalogModal() {
+            document.getElementById('catalog-modal').style.display = 'flex';
+        }
+        function closeCatalogModal() {
+            document.getElementById('catalog-modal').style.display = 'none';
+        }
+        function showCatalogLink() {
+            document.getElementById('catalog-form').style.display = 'none';
+            document.getElementById('catalog-success').style.display = 'flex';
+        }
+        function showSuccess() {
+            document.getElementById('success-modal').style.display = 'flex';
+            document.querySelector('form[target="hidden_iframe_bodas-alcorcon"]').reset();
+        }
+        function closeSuccessModal() {
+            document.getElementById('success-modal').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
+
