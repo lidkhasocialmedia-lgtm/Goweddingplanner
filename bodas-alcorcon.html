@@ -657,29 +657,30 @@
                 <iframe name="hidden_iframe_bodas-alcorcon" id="hidden_iframe_bodas-alcorcon" style="display:none;"
                     onload="if(submitted) {showSuccess();}"></iframe>
                 <form
-                    action="https://docs.google.com/forms/d/e/1FAIpQLSdlSwXwTMtqTDvxypP_AzqAcCnwqZVlD4Gm4tvDdBkZ6mbywg/formResponse"
-                    method="post" target="hidden_iframe_bodas-mostoles" onsubmit="submitted=true;" class="space-y-6">
+                   action="https://docs.google.com/forms/d/e/1FAIpQLSdlSwXwTMtqTDvxypP_AzqAcCnwqZVlD4Gm4tvDdBkZ6mbywg/formResponse"
+                    method="post" target="hidden_iframe" onsubmit="submitted=true;" class="space-y-6">
+                    <!-- IDs actualizados según los entry IDs proporcionados -->
                     <input type="text" name="entry.2072351570" placeholder="NOMBRE Y APELLIDOS" required
-                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                        class="w-full border-b border-stone-300 py-3 text-xs uppercase tracking-widest outline-none focus:border-rose-500 transition">
                     <input type="email" name="entry.934898924" placeholder="EMAIL" required
-                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                        class="w-full border-b border-stone-300 py-3 text-xs uppercase tracking-widest outline-none focus:border-rose-500 transition">
                     <input type="tel" name="entry.1240241884" placeholder="TELÉFONO" required
-                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                        class="w-full border-b border-stone-300 py-3 text-xs uppercase tracking-widest outline-none focus:border-rose-500 transition">
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <input type="text" name="entry.1103406153" placeholder="FECHA APROX."
-                            class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                            class="w-full border-b border-stone-300 py-3 text-xs uppercase tracking-widest outline-none focus:border-rose-500 transition">
                         <input type="text" name="entry.1895093121" placeholder="CIUDAD / LUGAR"
-                            class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none">
+                            class="w-full border-b border-stone-300 py-3 text-xs uppercase tracking-widest outline-none focus:border-rose-500 transition">
                     </div>
 
                     <textarea name="entry.1310552457" placeholder="CONTADNOS VUESTRA IDEA..." required rows="3"
-                        class="w-full border-b border-stone-300 bg-transparent py-3 text-xs uppercase tracking-widest focus:border-rose-400 outline-none"></textarea>
+                        class="w-full border-b border-stone-300 py-3 text-xs uppercase tracking-widest outline-none focus:border-rose-500 transition"></textarea>
 
                     <div class="flex items-start gap-3 pt-2">
-                        <input type="checkbox" id="privacy_bodas-mostoles" required class="mt-1 accent-rose-500">
-                        <label for="privacy_bodas-mostoles"
-                            class="text-[9px] text-stone-500 uppercase tracking-tighter leading-tight">
+                        <input type="checkbox" id="privacy" required class="mt-1 accent-rose-500 shrink-0">
+                        <label for="privacy"
+                            class="text-[9px] md:text-[10px] text-stone-500 uppercase tracking-tighter leading-tight text-left">
                             Acepto el tratamiento de datos y la cesión a proveedores locales para obtener la mejor
                             oferta.
                         </label>
@@ -773,5 +774,6 @@
 </body>
 
 </html>
+
 
 
